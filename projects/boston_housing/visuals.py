@@ -2,7 +2,7 @@
 # Suppress matplotlib user warnings
 # Necessary for newer version of matplotlib
 import warnings
-warnings.filterwarnings("ignore", category = UserWarning, module = "matplotlib")
+warnings.filterwarnings("ignore", category=UserWarning, module="matplotlib")
 #
 # Display inline matplotlib plots with IPython
 from IPython import get_ipython
@@ -20,7 +20,7 @@ def ModelLearning(X, y):
         The learning and testing scores for each model are then plotted. """
     
     # Create 10 cross-validation sets for training and testing
-    cv = ShuffleSplit(X.shape[0], n_iter = 10, test_size = 0.2, random_state = 0)
+    cv = ShuffleSplit(X.shape[0], n_iter=10, test_size=0.2, random_state=0)
 
     # Generate the training set sizes increasing by 50
     train_sizes = np.rint(np.linspace(1, X.shape[0]*0.8 - 1, 9)).astype(int)
@@ -32,11 +32,11 @@ def ModelLearning(X, y):
     for k, depth in enumerate([1,3,6,10]):
         
         # Create a Decision tree regressor at max_depth = depth
-        regressor = DecisionTreeRegressor(max_depth = depth)
+        regressor = DecisionTreeRegressor(max_depth=depth)
 
         # Calculate the training and testing scores
         sizes, train_scores, test_scores = curves.learning_curve(regressor, X, y, \
-            cv = cv, train_sizes = train_sizes, scoring = 'r2')
+            cv=cv, train_sizes=train_sizes, scoring='r2')
         
         # Find the mean and standard deviation for smoothing
         train_std = np.std(train_scores, axis = 1)
